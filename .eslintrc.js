@@ -1,159 +1,198 @@
 module.exports = {
   root: true,
-  env: {
-    node: true
+  parserOptions: {
+    parser: 'babel-eslint',
+    sourceType: 'module'
   },
-  extends: ['plugin:vue/strongly-recommended'],
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
+  },
+  extends: ['plugin:vue/recommended', 'eslint:recommended'],
+
+  // add your custom rules here
+  //it is base on https://github.com/vuejs/eslint-config-vue
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    // 不加分号
-    'semi': [0],
-    // 不能有未定义的变量
-    'no-undef': 1,
-    // 不能有声明后未被使用的变量或参数
-    'no-unused-vars': [2, {
-      'vars': 'local',
-      'args': 'none'
+    "vue/max-attributes-per-line": [2, {
+      "singleline": 10,
+      "multiline": {
+        "max": 1,
+        "allowFirstLine": false
+      }
     }],
-    // 禁止修改const声明的变量
-    'no-const-assign': 2,
-    // 函数参数不能重复
-    'no-dupe-args': 2,
-    // 如果if语句里面有return,后面不能跟else语句
-    'no-else-return': 2,
-    // 块语句中的内容不能为空
-    'no-empty': 2,
-    // 禁止对null使用==或!=运算符
-    'no-eq-null': 2,
-    // 禁止扩展native对象
-    'no-extend-native': 2,
-    // 禁止不必要的函数绑定
-    'no-extra-bind': 2,
-    // 禁止非必要的括号
-    'no-extra-parens': 2,
-    // 禁止多余的冒号
-    'no-extra-semi': 2,
-    // 禁止省略浮点数中的0 .5 3.
-    'no-floating-decimal': 2,
-    // 禁止行内备注
-    'no-inline-comments': 0,
-    // 不能有不规则的空格
-    'no-irregular-whitespace': 2,
-    // 不能用多余的空格
-    'no-multi-spaces': 1,
-    // 禁止重复声明变量
-    'no-redeclare': 2,
-    // 禁止使用javascript:void(0)
-    'no-script-url': 0,
-    // 禁止稀疏数组， [0,,2]
-    'no-sparse-arrays': 2,
-    // 禁止使用三目运算符
-    'no-ternary': 0,
-    // 一行结束后面不要有空格
-    'no-trailing-spaces': 1,
-    // 标识符不能以_开头或结尾
-    'no-underscore-dangle': 1,
-    // 是否允许非空数组里面有多余的空格
-    'array-bracket-spacing': [2, 'never'],
-    // 箭头函数用小括号括起来
-    'arrow-parens': 0,
-    // =>的前/后括号
-    'arrow-spacing': 0,
-    // 块语句中使用var
-    'block-scoped-var': 0,
-    // 逗号风格，换行时在行首还是行尾
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/multiline-html-element-content-newline":"off",
+    "vue/name-property-casing": ["error", "PascalCase"],
+    "vue/no-v-html": "off",
+    'accessor-pairs': 2,
+    'arrow-spacing': [2, {
+      'before': true,
+      'after': true
+    }],
+    'block-spacing': [2, 'always'],
+    'brace-style': [2, '1tbs', {
+      'allowSingleLine': true
+    }],
+    'camelcase': [0, {
+      'properties': 'always'
+    }],
+    'comma-dangle': [2, 'never'],
+    'comma-spacing': [2, {
+      'before': false,
+      'after': true
+    }],
     'comma-style': [2, 'last'],
-    // 避免不必要的方括号
-    'dot-notation': [0, {
-      'allowKeywords': true
+    'constructor-super': 2,
+    'curly': [2, 'multi-line'],
+    'dot-location': [2, 'property'],
+    'eol-last': 2,
+    'eqeqeq': ["error", "always", {"null": "ignore"}],
+    'generator-star-spacing': [2, {
+      'before': true,
+      'after': true
     }],
-    // 必须使用全等
-    'eqeqeq': 2,
-    // 对象字面量中冒号的前后空格
-    'key-spacing': [0, {
+    'handle-callback-err': [2, '^(err|error)$'],
+    'indent': [2, 2, {
+      'SwitchCase': 1
+    }],
+    'jsx-quotes': [2, 'prefer-single'],
+    'key-spacing': [2, {
       'beforeColon': false,
       'afterColon': true
     }],
-    // 变量声明后是否需要空一行
-    'newline-after-var': 0,
-    // 引号类型 `` "" ''
-    'quotes': [1, 'single'],
-    // 变量声明时排序
-    'sort-vars': 0,
-    // 禁止比较时使用NaN，只能用isNaN()
-    'use-isnan': 2,
-    // jsx中使用单引号
-    'jsx-quotes': ['error', 'prefer-single'],
-    // 单个组件无内容自结尾
-    'vue/html-self-closing': ['error', {
-      'html': {
-        'void': 'always',
-        'normal': 'always',
-        'component': 'always'
-      },
-      'svg': 'always',
-      'math': 'always'
+    'keyword-spacing': [2, {
+      'before': true,
+      'after': true
     }],
-    // 设置html缩进
-    'vue/html-indent': ['error', 2, {
-      'attribute': 2,
-      'baseIndent': 1,
-      'closeBracket': 0,
-      'alignAttributesVertically': false,
-      'ignores': []
+    'new-cap': [2, {
+      'newIsCap': true,
+      'capIsNew': false
     }],
-    // 属性顺序
-    'vue/attributes-order': 1,
-    // 注释前面需要添加空格
-    'spaced-comment': ['error', 'always', {
-      'exceptions': ['-', '+']
+    'new-parens': 2,
+    'no-array-constructor': 2,
+    'no-caller': 2,
+    'no-console': 'off',
+    'no-class-assign': 2,
+    'no-cond-assign': 2,
+    'no-const-assign': 2,
+    'no-control-regex': 0,
+    'no-delete-var': 2,
+    'no-dupe-args': 2,
+    'no-dupe-class-members': 2,
+    'no-dupe-keys': 2,
+    'no-duplicate-case': 2,
+    'no-empty-character-class': 2,
+    'no-empty-pattern': 2,
+    'no-eval': 2,
+    'no-ex-assign': 2,
+    'no-extend-native': 2,
+    'no-extra-bind': 2,
+    'no-extra-boolean-cast': 2,
+    'no-extra-parens': [2, 'functions'],
+    'no-fallthrough': 2,
+    'no-floating-decimal': 2,
+    'no-func-assign': 2,
+    'no-implied-eval': 2,
+    'no-inner-declarations': [2, 'functions'],
+    'no-invalid-regexp': 2,
+    'no-irregular-whitespace': 2,
+    'no-iterator': 2,
+    'no-label-var': 2,
+    'no-labels': [2, {
+      'allowLoop': false,
+      'allowSwitch': false
     }],
-    // html属性赋值等号左右不能有空格
-    'vue/no-spaces-around-equal-signs-in-attribute': ['error'],
-    // 强制prop以驼峰命名
-    'vue/prop-name-casing': ['error', 'camelCase'],
-    // 移除多余不使用的空格
-    'vue/no-multi-spaces': ['error', {
-      'ignoreProperties': false
+    'no-lone-blocks': 2,
+    'no-mixed-spaces-and-tabs': 2,
+    'no-multi-spaces': 2,
+    'no-multi-str': 2,
+    'no-multiple-empty-lines': [2, {
+      'max': 1
     }],
-    // html结尾 >
-    'vue/html-closing-bracket-newline': ['error', {
-      'singleline': 'never',
-      'multiline': 'never'
+    'no-native-reassign': 2,
+    'no-negated-in-lhs': 2,
+    'no-new-object': 2,
+    'no-new-require': 2,
+    'no-new-symbol': 2,
+    'no-new-wrappers': 2,
+    'no-obj-calls': 2,
+    'no-octal': 2,
+    'no-octal-escape': 2,
+    'no-path-concat': 2,
+    'no-proto': 2,
+    'no-redeclare': 2,
+    'no-regex-spaces': 2,
+    'no-return-assign': [2, 'except-parens'],
+    'no-self-assign': 2,
+    'no-self-compare': 2,
+    'no-sequences': 2,
+    'no-shadow-restricted-names': 2,
+    'no-spaced-func': 2,
+    'no-sparse-arrays': 2,
+    'no-this-before-super': 2,
+    'no-throw-literal': 2,
+    'no-trailing-spaces': 2,
+    'no-undef': 2,
+    'no-undef-init': 2,
+    'no-unexpected-multiline': 2,
+    'no-unmodified-loop-condition': 2,
+    'no-unneeded-ternary': [2, {
+      'defaultAssignment': false
     }],
-    // 属性每行数量
-    'vue/max-attributes-per-line': ['error', {
-      // 一行最多3个属性
-      'singleline': 3,
-      'multiline': {
-        'max': 1,
-        'allowFirstLine': true
+    'no-unreachable': 2,
+    'no-unsafe-finally': 2,
+    'no-unused-vars': [2, {
+      'vars': 'all',
+      'args': 'none'
+    }],
+    'no-useless-call': 2,
+    'no-useless-computed-key': 2,
+    'no-useless-constructor': 2,
+    'no-useless-escape': 0,
+    'no-whitespace-before-property': 2,
+    'no-with': 2,
+    'one-var': [2, {
+      'initialized': 'never'
+    }],
+    'operator-linebreak': [2, 'after', {
+      'overrides': {
+        '?': 'before',
+        ':': 'before'
       }
     }],
-    // 单行html元素内容是否换行
-    'vue/singleline-html-element-content-newline': ['error', {
-      'ignoreWhenNoAttributes': true,
-      'ignoreWhenEmpty': true,
-      'ignores': [
-        'pre',
-        'textarea',
-        'span',
-        'i',
-        'label',
-        'el-button',
-        'el-radio',
-        'el-checkbox',
-        'el-link',
-        'el-tab-pane',
-        'el-dropdown-item',
-        'el-step',
-        'el-table-column',
-        'el-option'
-      ]
-    }]
-  },
-  parserOptions: {
-    parser: 'babel-eslint'
+    'padded-blocks': [2, 'never'],
+    'quotes': [2, 'single', {
+      'avoidEscape': true,
+      'allowTemplateLiterals': true
+    }],
+    'semi': [2, 'never'],
+    'semi-spacing': [2, {
+      'before': false,
+      'after': true
+    }],
+    'space-before-blocks': [2, 'always'],
+    'space-before-function-paren': [2, 'never'],
+    'space-in-parens': [2, 'never'],
+    'space-infix-ops': 2,
+    'space-unary-ops': [2, {
+      'words': true,
+      'nonwords': false
+    }],
+    'spaced-comment': [2, 'always', {
+      'markers': ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ',']
+    }],
+    'template-curly-spacing': [2, 'never'],
+    'use-isnan': 2,
+    'valid-typeof': 2,
+    'wrap-iife': [2, 'any'],
+    'yield-star-spacing': [2, 'both'],
+    'yoda': [2, 'never'],
+    'prefer-const': 2,
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'object-curly-spacing': [2, 'always', {
+      objectsInObjects: false
+    }],
+    'array-bracket-spacing': [2, 'never']
   }
 }

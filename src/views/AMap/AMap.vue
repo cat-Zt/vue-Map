@@ -345,7 +345,7 @@ export default {
     },
     // 恢复巡航
     trackBegin() {
-      this.trackState = true;
+         this.trackState = true;
       this.navgFirst.resume();
     }
   },

@@ -6,12 +6,12 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from './BMap/BMap.vue'
+import HelloWorld from './BMap/BMap.vue';
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    name: 'Home',
+    components: {
+        HelloWorld
+    }
+};
 </script>

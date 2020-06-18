@@ -18,7 +18,7 @@
 import loadBMap from './mapClass.js';
 import mapJson from './in.json';
 export default {
-  /* eslint-disable */
+    /* eslint-disable */
   data () {
     return {
       mapId: 'BMap-' + parseInt(Date.now() + Math.random()),

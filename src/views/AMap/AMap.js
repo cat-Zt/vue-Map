@@ -35,7 +35,7 @@ export function asyncLoadBaiduJs (ak) {
         };
         const script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'https://webapi.amap.com/maps?v=1.4.15&' + ak + '&callback=initAMap';
+        script.src = 'https://webapi.amap.com/maps?v=1.4.15&key=' + ak + '&plugin=AMap.Driving&callback=initAMap';
         script.onerror = reject;
         document.head.appendChild(script);
     });

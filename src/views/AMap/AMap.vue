@@ -85,20 +85,22 @@ export default {
     // 地图初始化
     initMap() {
       const self = this;
-      self.map = new AMap.Map('container', {
-        zoom: 12,
-        mapStyle: 'amap://styles/whitesmoke'
+      loadBMap('6cc20787964ab8ee4b019abf4819b979').then(() => {
+        self.map = new AMap.Map('container', {
+          zoom: 12,
+          mapStyle: 'amap://styles/whitesmoke'
+        });
+        AMap.plugin(['AMap.ToolBar', 'AMap.Scale'], function() {
+          self.map.addControl(
+            new AMap.ToolBar({
+              offset: new AMap.Pixel(40, 60),
+              direction: false
+            })
+          );
+          self.map.addControl(new AMap.Scale());
+        });
+        this.initMapLine();
       });
-      AMap.plugin(['AMap.ToolBar', 'AMap.Scale'], function() {
-        self.map.addControl(
-          new AMap.ToolBar({
-            offset: new AMap.Pixel(40, 60),
-            direction: false
-          })
-        );
-        self.map.addControl(new AMap.Scale());
-      });
-      this.initMapLine();
     },
     parseRouteToPath(route) {
       var path = [];
@@ -169,7 +171,7 @@ export default {
     initCruise(startData, dotwayPoint) {
       let self = this;
       var colors = ['#008ad3'];
-      loadBMap('6cc20787964ab8ee4b019abf4819b979').then(() => {
+      // loadBMap('6cc20787964ab8ee4b019abf4819b979').then(() => {
         // 初始化 起点终点
         self.markerStart = new AMap.Marker({
           map: self.map,
@@ -320,7 +322,7 @@ export default {
           }
         });
         self.map.setFitView();
-      });
+      // });
     },
     // 轨迹回放
     trackPlayback() {
